@@ -1,2 +1,6 @@
-public class Vastane {
+public interface Vastane {
+
+    int ryndab();
+    int kaitseb();
+
 }
