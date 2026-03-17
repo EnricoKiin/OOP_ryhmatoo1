@@ -9,12 +9,20 @@ public class Tudeng{
         this.kaitse = false;
     }
 
-    public void ryndab(Vastane vastane) {
+    public void rynda(Vastane vastane) {
+        int dmg = this.rynda_stat;
+        if (vastane.getKaitseb()) {
+            dmg = (int)(dmg * 0.5);
+        }
+
         int uuedVastaseElud;
         uuedVastaseElud = vastane.getElud() - this.rynda_stat;
     }
 
-    public void kaitse() {
+    public void kaitse(Vastane vastane) {
 
+    }
+
+    public void saaStippi(Vastane vastane) {
     }
 }

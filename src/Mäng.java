@@ -42,19 +42,15 @@ public class Mäng {
 
         switch (TudengiOtsus) {
             case 1:
-                this.rynda();
+                tudeng.rynda(vastane);
                 break;
             case 2:
-                this.kaitse();
+                tudeng.kaitse(vastane);
                 break;
             case 3:
-                this.saaStippi();
+                tudeng.saaStippi(vastane);
                 break;
         }
-
-    }
-
-    private void rynda() {
     }
 
 
