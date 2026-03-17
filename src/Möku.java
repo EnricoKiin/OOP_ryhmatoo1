@@ -4,9 +4,28 @@ public class Möku implements Vastane {
 
     private int rynde_tugevus = 5;
 
-    public int ryndab() {};
+    public int ryndab() {
 
-    public int getElud() {};
+        if (kangelane_kaitseb) {
+            System.out.println();
+            System.out.println();
+        }
 
-    public void setElud() {};
+
+
+        return
+    };
+
+    public boolean kaitseb() {
+
+        return true;
+    }
+
+    public int getElud() {
+
+    }
+
+    public void setElud() {
+
+    }
 }
