@@ -3,6 +3,8 @@ public class Möku implements Vastane {
     private int health = 50;
 
     private int rynde_tugevus = 5;
+    private boolean ryndab;
+    private boolean kaitseb;
 
 
     public void ryndab() {
@@ -12,14 +14,14 @@ public class Möku implements Vastane {
         }
 
         else {
-            set.kangelaseElud(int rynde_tugevus);
+            set.pangakonto(int rynde_tugevus);
         }
 
 
     };
 
-    public boolean kaitseb() {
-
+    public void kaitseb() {
+        this.kaitseb = true;
         return true;
     }
 
