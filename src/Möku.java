@@ -4,16 +4,18 @@ public class Möku implements Vastane {
 
     private int rynde_tugevus = 5;
 
-    public int ryndab() {
+
+    public void ryndab() {
 
         if (kangelane_kaitseb) {
-            System.out.println();
-            System.out.println();
+            System.out.println("Möku ahvatles sind 5-eurose õluga.");
+        }
+
+        else {
+            set.kangelaseElud(int rynde_tugevus);
         }
 
 
-
-        return
     };
 
     public boolean kaitseb() {

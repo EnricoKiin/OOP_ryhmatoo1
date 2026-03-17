@@ -1,6 +1,6 @@
 public interface Vastane {
 
-    int ryndab();
+    void ryndab();
     boolean kaitseb();
 
     public int getElud();
