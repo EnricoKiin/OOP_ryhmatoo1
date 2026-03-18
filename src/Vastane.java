@@ -1,47 +1,14 @@
-public class Vastane {
+public class Vastane extends Tegelane{
 
-    private int elud;
-    private double kaitsePrtosent;
-    private int rynda_dmg;
-    private boolean kaitseb;
-    private boolean ryndab;
+    private Tegevus tegevus;
 
-    public Vastane(int elud, double kaitsePrtosent, int rynda_dmg, boolean ryndab, boolean kaitseb) {
-        this.elud = elud;
-        this.kaitsePrtosent = kaitsePrtosent;
-        this.rynda_dmg = rynda_dmg;
-        this.ryndab = ryndab;
-        this.kaitseb = kaitseb;
+    public Vastane(String nimi, int elud, double kaitsePrtosent, int rynda_dmg) {
+        super(nimi, elud, kaitsePrtosent, rynda_dmg);
     }
 
-    public  void rynda() {
-        this.ryndab = true;
-    }
-    public  void kaitse() {
-        this.kaitseb = true;
-    }
+    public void ryndeBoost() {
+        int boost = 3;
 
-    public  int getElud() {
-        return this.elud;
+        this.setRynda_dmg(this.getRynda_dmg() + boost);
     }
-    public  void setElud(int uuedElud) {
-        this.elud = uuedElud;
-    }
-
-    public  void kaotaElud(int dmg) {
-        if (this.elud - dmg < 0) {
-            this.elud = 0;
-        }
-        else {
-            this.elud -= dmg;
-        }
-    }
-
-    public boolean onElus() {
-        if (this.elud != 0) {
-            return true;
-        }
-        return false;
-    }
-
 }

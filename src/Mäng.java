@@ -11,13 +11,16 @@ public class Mäng {
 
 
     public void mängi() {
-        int vastaneTegevus = (int)(Math.random() * 2);
+        int vastaneTegevus = (int)(Math.random() * 100);
 
-        if (vastaneTegevus == 0) {
-            vastane.ryndab();
+        if (vastaneTegevus <= 44) {
+            vastane.setTegevus(Tegevus.RYNDA);
+        }
+        else if (vastaneTegevus <= 89) {
+            vastane.setTegevus(Tegevus.KAITSE);
         }
         else {
-            vastane.kaitseb();
+            vastane.setTegevus(Tegevus.BOOST);
         }
 
         Scanner sc = new Scanner(System.in);
@@ -42,15 +45,64 @@ public class Mäng {
 
         switch (TudengiOtsus) {
             case 1:
-                tudeng.rynda(vastane);
+                tudeng.setTegevus(Tegevus.RYNDA);
                 break;
             case 2:
-                tudeng.kaitse(vastane);
+                tudeng.setTegevus(Tegevus.KAITSE);
                 break;
             case 3:
-                tudeng.saaStippi(vastane);
+                tudeng.setTegevus(Tegevus.RAVI);
                 break;
         }
+    }
+
+
+    public void mehaanika() {
+
+        Scanner teine = new Scanner(System.in);
+
+        System.out.println("SISESTA OMA NIMI: ");
+
+        String nimi = teine.nextLine();
+
+        tudeng.setNimi(nimi);
+
+    }
+
+
+    public void lahing () {
+        Tegevus tudengiOtsus = tudeng.getTegevus();
+        Tegevus vastaseOtsus = vastane.getTegevus();
+
+
+        if (tudengiOtsus == Tegevus.RYNDA) {
+            int tudengATK = tudeng.getRynda_dmg();
+            if (vastaseOtsus == Tegevus.KAITSE) {
+                tudengATK = (int)(tudengATK * vastane.getKaitsePrtosent());
+            }
+            vastane.kaotaElud(tudengATK);
+        }
+
+        if (vastaseOtsus == Tegevus.RYNDA) {
+            int vastaseATK = vastane.getRynda_dmg();
+            if (tudengiOtsus == Tegevus.KAITSE) {
+                vastaseATK = (int)(vastaseATK * tudeng.getKaitsePrtosent());
+            }
+            tudeng.kaotaElud(vastaseATK);
+            if (!tudeng.onElus()) *
+                break;
+
+        }
+
+        if (tudengiOtsus == Tegevus.RAVI) {
+            tudeng.saaStippi();
+        }
+
+        if (vastaseOtsus == Tegevus.BOOST) {
+            vastane.ryndeBoost();
+        }
+
+
     }
 
 

@@ -1,28 +1,21 @@
-public class Tudeng{
+public class Tudeng extends Tegelane{
 
-    private int pangakonto;
-    private int rynda_stat;
-    private boolean kaitse;
+    private Tegevus tegevus;
 
-    public Tudeng(int pangakonto) {
-        this.pangakonto = pangakonto;
-        this.kaitse = false;
+    public Tudeng(String nimi, int elud, double kaitsePrtosent, int rynda_dmg) {
+        super(nimi, elud, kaitsePrtosent, rynda_dmg);
     }
 
-    public void rynda(Vastane vastane) {
-        int dmg = this.rynda_stat;
-        if (vastane.getKaitseb()) {
-            dmg = (int)(dmg * 0.5);
+    public void saaStippi() {
+        int maxElud = this.getMaxElud();
+        int hetkelElud = this.getElud();
+
+        int elusidJuurde = (int)(maxElud * 0.2);
+        if (hetkelElud + elusidJuurde > maxElud) {
+            this.setElud(maxElud);
         }
-
-        int uuedVastaseElud;
-        uuedVastaseElud = vastane.getElud() - this.rynda_stat;
-    }
-
-    public void kaitse(Vastane vastane) {
-
-    }
-
-    public void saaStippi(Vastane vastane) {
+        else {
+            this.setElud(hetkelElud + elusidJuurde);
+        }
     }
 }
