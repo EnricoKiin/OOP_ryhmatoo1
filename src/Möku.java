@@ -1,4 +1,4 @@
-public class Möku implements Vastane {
+public class Möku extends Vastane {
 
     private int health = 50;
 
