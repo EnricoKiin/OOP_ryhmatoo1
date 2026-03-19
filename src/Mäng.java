@@ -69,38 +69,47 @@ public class Mäng {
 
     }
 
-
-    public void lahing () {
+    /**
+     * Korraldab Tudengi ja Vastase vahel lahingut
+     * @return Tagastab Vastava klassi isendi, kes ära suri. Muidu null
+     */
+    public Tegelane lahing () {
         Tegevus tudengiOtsus = tudeng.getTegevus();
         Tegevus vastaseOtsus = vastane.getTegevus();
 
-
+        // Tudengil on ründamises eelis
         if (tudengiOtsus == Tegevus.RYNDA) {
             int tudengATK = tudeng.getRynda_dmg();
             if (vastaseOtsus == Tegevus.KAITSE) {
                 tudengATK = (int)(tudengATK * vastane.getKaitsePrtosent());
             }
             vastane.kaotaElud(tudengATK);
+            if (!vastane.onElus()) {
+                return vastane;
+            }
+        }
+        // Tudeng saab alati elusid endale juurde anda enne kui vastas saab rünnata
+        if (tudengiOtsus == Tegevus.RAVI) {
+            tudeng.saaStippi();
         }
 
+        // Vastase ründeskeem
         if (vastaseOtsus == Tegevus.RYNDA) {
             int vastaseATK = vastane.getRynda_dmg();
             if (tudengiOtsus == Tegevus.KAITSE) {
                 vastaseATK = (int)(vastaseATK * tudeng.getKaitsePrtosent());
             }
             tudeng.kaotaElud(vastaseATK);
-            if (!tudeng.onElus()) *
-                break;
+            if (!tudeng.onElus()) {
+                return tudeng;
+            }
 
         }
-
-        if (tudengiOtsus == Tegevus.RAVI) {
-            tudeng.saaStippi();
-        }
-
+        // Vastane boostib enda ATK
         if (vastaseOtsus == Tegevus.BOOST) {
             vastane.ryndeBoost();
         }
+        return null;
 
 
     }
