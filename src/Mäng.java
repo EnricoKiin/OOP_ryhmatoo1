@@ -9,7 +9,21 @@ public class Mäng {
         this.vastane = vastane;
     }
 
+    /**
+     * Lahendab kõik elu probleemid ainult 20 sout'ga
+     * Teeb nagu nimi ütleb
+     */
+    public void puhastaEkraan() {
+        for (int i = 0; i < 20; i++) {
+            System.out.println();
+        }
+    }
 
+    public void mänguSeis() {
+        puhastaEkraan();
+        System.out.println(vastane.toString() + ": " + vastane.getElud() + "hp");
+        System.out.println(tudeng.toString() + ": " + tudeng.getElud() + "hp");
+    }
     public void mängi() {
         Scanner sc = new Scanner(System.in);
         int TudengiOtsus;
@@ -17,6 +31,7 @@ public class Mäng {
 
 
         while (vastane.onElus() && tudeng.onElus()) {
+            mänguSeis();
             vastaneTegevus = (int) (Math.random() * 100);
 
             if (vastaneTegevus <= 44) {
@@ -67,11 +82,13 @@ public class Mäng {
     }
 
     public void kaotus() {
+        puhastaEkraan();
         System.out.println("Surid ära!");
         System.out.println("Lõpetasid: " + tudeng.getPunkte() + " punktidega");
     }
 
     public void voit() {
+        puhastaEkraan();
         int vastasePunktid = vastane.getPunkteVaart();
         System.out.println("Tapsid ära " + vastane.toString());
         System.out.println("Teenisid " + vastasePunktid + " punkti!");
@@ -121,7 +138,7 @@ public class Mäng {
             if (tudengiOtsus == Tegevus.KAITSE) {
                 vastaseATK = (int)(vastaseATK * tudeng.getKaitsePrtosent());
             }
-            tudeng.kaotaElud(vastaseATK);
+            tudeng.kaotaElud(vastaseATK, vastane);
             if (!tudeng.onElus()) {
                 return tudeng;
             }
