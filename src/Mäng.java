@@ -11,49 +11,71 @@ public class Mäng {
 
 
     public void mängi() {
-        int vastaneTegevus = (int)(Math.random() * 100);
-
-        if (vastaneTegevus <= 44) {
-            vastane.setTegevus(Tegevus.RYNDA);
-        }
-        else if (vastaneTegevus <= 89) {
-            vastane.setTegevus(Tegevus.KAITSE);
-        }
-        else {
-            vastane.setTegevus(Tegevus.BOOST);
-        }
-
         Scanner sc = new Scanner(System.in);
-
         int TudengiOtsus;
-        while (true) {
-            System.out.println("Vali tegevus:");
-            System.out.println("1 - ründa    2 - kaitse    3 - saa stippi");
-            if (sc.hasNextInt()) {
-                TudengiOtsus = sc.nextInt();
-                if (TudengiOtsus == 1 || TudengiOtsus == 2 || TudengiOtsus == 3) {
-                    break;
-                }
-                else {
+        int vastaneTegevus;
+
+
+        while (vastane.onElus() && tudeng.onElus()) {
+            vastaneTegevus = (int) (Math.random() * 100);
+
+            if (vastaneTegevus <= 44) {
+                vastane.setTegevus(Tegevus.RYNDA);
+            } else if (vastaneTegevus <= 89) {
+                vastane.setTegevus(Tegevus.KAITSE);
+            } else {
+                vastane.setTegevus(Tegevus.BOOST);
+            }
+
+            while (true) {
+                System.out.println("Vali tegevus:");
+                System.out.println("1 - ründa    2 - kaitse    3 - saa stippi");
+                if (sc.hasNextInt()) {
+                    TudengiOtsus = sc.nextInt();
+                    if (TudengiOtsus == 1 || TudengiOtsus == 2 || TudengiOtsus == 3) {
+                        break;
+                    } else {
+                        System.out.println("Vale sisend!");
+                    }
+                } else {
                     System.out.println("Vale sisend!");
                 }
             }
-            else {
-                System.out.println("Vale sisend!");
+
+            switch (TudengiOtsus) {
+                case 1:
+                    tudeng.setTegevus(Tegevus.RYNDA);
+                    break;
+                case 2:
+                    tudeng.setTegevus(Tegevus.KAITSE);
+                    break;
+                case 3:
+                    tudeng.setTegevus(Tegevus.RAVI);
+                    break;
             }
+
         }
 
-        switch (TudengiOtsus) {
-            case 1:
-                tudeng.setTegevus(Tegevus.RYNDA);
-                break;
-            case 2:
-                tudeng.setTegevus(Tegevus.KAITSE);
-                break;
-            case 3:
-                tudeng.setTegevus(Tegevus.RAVI);
-                break;
+        if (!tudeng.onElus()) {
+            kaotus();
         }
+        else {
+            voit();
+        }
+
+
+    }
+
+    public void kaotus() {
+        System.out.println("Surid ära!");
+        System.out.println("Lõpetasid: " + tudeng.getPunkte() + " punktidega");
+    }
+
+    public void voit() {
+        int vastasePunktid = vastane.getPunkteVaart();
+        System.out.println("Tapsid ära " + vastane.toString());
+        System.out.println("Teenisid " + vastasePunktid + " punkti!");
+        tudeng.lisaPunkte(vastasePunktid);
     }
 
 

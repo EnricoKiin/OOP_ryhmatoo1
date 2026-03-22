@@ -1,9 +1,11 @@
 public class Tudeng extends Tegelane{
 
     private Tegevus tegevus;
+    private int punkte;
 
     public Tudeng(String nimi, int elud, double kaitsePrtosent, int rynda_dmg) {
         super(nimi, elud, kaitsePrtosent, rynda_dmg);
+        this.punkte = 0;
     }
 
     public void saaStippi() {
@@ -17,5 +19,13 @@ public class Tudeng extends Tegelane{
         else {
             this.setElud(hetkelElud + elusidJuurde);
         }
+    }
+
+    public void lisaPunkte(int punkteJuurde) {
+        this.punkte += punkteJuurde;
+    }
+
+    public int getPunkte() {
+        return this.punkte;
     }
 }
