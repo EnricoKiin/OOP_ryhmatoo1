@@ -25,6 +25,9 @@ public class Tegelane {
     public void setNimi(String nimi) {
         this.nimi = nimi;
     }
+    public String getNimi() {
+        return this.nimi;
+    }
 
     public boolean kaotaElud(int dmg) {
         if (this.elud - dmg < 0) {
