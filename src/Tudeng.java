@@ -31,6 +31,7 @@ public class Tudeng extends Tegelane{
 
     @Override
     public boolean kaotaElud(int dmg) {
+        super.kaotaElud(dmg);
 
     }
 }

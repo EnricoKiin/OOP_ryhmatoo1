@@ -10,7 +10,7 @@ public class Testryhmatoo {
 
         String nimi = teine.nextLine();
 
-        tudeng.setNimi(nimi);
+        Tudeng tudeng = new Tudeng(nimi, 25, 0, 6);
     }
 
 
@@ -24,19 +24,19 @@ public class Testryhmatoo {
             case 1:
                 elud = (int) (Math.random() * 8) + 10;
                 kaitseProtsent = Math.random() * 0.2 + 0.1;
-                rynda_dmg = (int) Math.random() * 2 + 2;
+                rynda_dmg = (int) (Math.random() * 2) + 2;
                 break;
 
             case 2:
-                elud = (int) Math.random() * 8 + 15;
+                elud = (int) (Math.random() * 8) + 15;
                 kaitseProtsent = Math.random() * 0.2 + 0.3;
-                rynda_dmg = (int) Math.random() * 2 + 3;
+                rynda_dmg = (int) (Math.random() * 2) + 3;
                 break;
 
             case 3:
-                elud = (int) Math.random() * 9 + 18;
+                elud = (int) (Math.random() * 9) + 18;
                 kaitseProtsent = Math.random() * 0.2 + 0.4;
-                rynda_dmg = (int) Math.random() * 2 + 4;
+                rynda_dmg = (int) (Math.random() * 2) + 4;
                 break;
 
         }
