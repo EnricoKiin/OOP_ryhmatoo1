@@ -103,7 +103,7 @@ public class Mäng {
         if (tudengiOtsus == Tegevus.RYNDA) {
             int tudengATK = tudeng.getRynda_dmg();
             if (vastaseOtsus == Tegevus.KAITSE) {
-                tudengATK = (int)(tudengATK * vastane.getKaitsePrtosent());
+                tudengATK = (int)(tudengATK * vastane.getKaitseProtsent());
             }
             vastane.kaotaElud(tudengATK);
             if (!vastane.onElus()) {
@@ -119,7 +119,7 @@ public class Mäng {
         if (vastaseOtsus == Tegevus.RYNDA) {
             int vastaseATK = vastane.getRynda_dmg();
             if (tudengiOtsus == Tegevus.KAITSE) {
-                vastaseATK = (int)(vastaseATK * tudeng.getKaitsePrtosent());
+                vastaseATK = (int)(vastaseATK * tudeng.getKaitseProtsent());
             }
             tudeng.kaotaElud(vastaseATK);
             if (!tudeng.onElus()) {
