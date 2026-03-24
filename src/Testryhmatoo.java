@@ -29,11 +29,12 @@ public class Testryhmatoo {
             mäng.mängi();
 
             if (!tudeng.onElus()) {
+                System.out.println("Kaotasid mängu. Get good kid");
                 break;
             }
         }
         if (tudeng.onElus()) {
-
+            System.out.println("Lõpetasid mängu " + tudeng.getPunkte() + " punktiga!");
         }
 
 
