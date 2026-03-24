@@ -3,8 +3,8 @@ public class Tudeng extends Tegelane{
     private Tegevus tegevus;
     private int punkte;
 
-    public Tudeng(String nimi, int elud, double kaitsePrtosent, int rynda_dmg) {
-        super(nimi, elud, kaitsePrtosent, rynda_dmg);
+    public Tudeng(String nimi, int elud, double kaitseProtsent, int rynda_dmg) {
+        super(nimi, elud, kaitseProtsent, rynda_dmg);
         this.punkte = 0;
     }
 
@@ -27,5 +27,11 @@ public class Tudeng extends Tegelane{
 
     public int getPunkte() {
         return this.punkte;
+    }
+
+    @Override
+    public boolean kaotaElud(int dmg) {
+        super.kaotaElud(dmg);
+
     }
 }

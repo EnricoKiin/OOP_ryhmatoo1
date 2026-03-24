@@ -2,15 +2,15 @@ public class Tegelane {
 
     private String nimi;
     private int elud;
-    private double kaitsePrtosent;
+    private double kaitseProtsent;
     private int rynda_dmg;
     private int maxElud;
     private Tegevus tegevus;
 
-    public Tegelane(String nimi, int elud, double kaitsePrtosent, int rynda_dmg) {
+    public Tegelane(String nimi, int elud, double kaitseProtsent, int rynda_dmg) {
         this.nimi = nimi;
         this.elud = elud;
-        this.kaitsePrtosent = kaitsePrtosent;
+        this.kaitseProtsent = kaitseProtsent;
         this.rynda_dmg = rynda_dmg;
         this.maxElud = elud;
     }
@@ -24,6 +24,9 @@ public class Tegelane {
 
     public void setNimi(String nimi) {
         this.nimi = nimi;
+    }
+    public String getNimi() {
+        return this.nimi;
     }
 
     public boolean kaotaElud(int dmg) {
@@ -43,8 +46,8 @@ public class Tegelane {
         return false;
     }
 
-    public double getKaitsePrtosent() {
-        return kaitsePrtosent;
+    public double getKaitseProtsent() {
+        return kaitseProtsent;
     }
 
     public int getRynda_dmg() {
