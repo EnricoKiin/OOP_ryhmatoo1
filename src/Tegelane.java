@@ -29,14 +29,13 @@ public class Tegelane {
         return this.nimi;
     }
 
-    public boolean kaotaElud(int dmg) {
+    public void kaotaElud(int dmg) {
         if (this.elud - dmg < 0) {
             this.elud = 0;
         }
         else {
             this.elud -= dmg;
         }
-        return onElus();
     }
 
     public boolean onElus() {

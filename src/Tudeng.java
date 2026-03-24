@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Tudeng extends Tegelane{
 
     private Tegevus tegevus;
@@ -29,8 +32,17 @@ public class Tudeng extends Tegelane{
         return this.punkte;
     }
 
-    @Override
-    public boolean kaotaElud(int dmg) {
+
+    public void kaotaElud(int dmg, Vastane vastane) {
+        List<String> vastaseLaused = vastane.getRyndeLaused();
+
+        int valik = (int)(Math.random() * vastaseLaused.size());
+        System.out.println(vastaseLaused.get(valik));
+        if (this.tegevus == Tegevus.KAITSE) {
+            System.out.println("Kuid su lemmik laul hakkas mängima. Kaotad vähem elusid.");
+        }
+        System.out.println("Kaotasid "  + dmg + " elu");
+
         super.kaotaElud(dmg);
 
     }

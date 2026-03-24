@@ -24,6 +24,13 @@ public class Mäng {
         System.out.println(vastane.toString() + ": " + vastane.getElud() + "hp");
         System.out.println(tudeng.toString() + ": " + tudeng.getElud() + "hp");
     }
+
+    public void maga(int aeg) {
+        try {
+            Thread.sleep(aeg);
+        }
+        catch (InterruptedException ignored) {}
+    }
     public void mängi() {
         Scanner sc = new Scanner(System.in);
         int TudengiOtsus;
@@ -31,6 +38,7 @@ public class Mäng {
 
 
         while (vastane.onElus() && tudeng.onElus()) {
+            puhastaEkraan();
             mänguSeis();
             vastaneTegevus = (int) (Math.random() * 100);
 
@@ -47,13 +55,14 @@ public class Mäng {
                 System.out.println("1 - ründa    2 - kaitse    3 - saa stippi");
                 if (sc.hasNextInt()) {
                     TudengiOtsus = sc.nextInt();
-                    if (TudengiOtsus == 1 || TudengiOtsus == 2 || TudengiOtsus == 3) {
+                    if (TudengiOtsus >=1 && TudengiOtsus <= 3) {
                         break;
                     } else {
                         System.out.println("Vale sisend!");
                     }
                 } else {
                     System.out.println("Vale sisend!");
+                    sc.next();
                 }
             }
 
@@ -68,14 +77,17 @@ public class Mäng {
                     tudeng.setTegevus(Tegevus.RAVI);
                     break;
             }
-
+            lahing();
+            maga(5000);
         }
 
         if (!tudeng.onElus()) {
             kaotus();
+            maga(5000);
         }
         else {
             voit();
+            maga(4000);
         }
 
 
@@ -115,12 +127,13 @@ public class Mäng {
     public Tegelane lahing () {
         Tegevus tudengiOtsus = tudeng.getTegevus();
         Tegevus vastaseOtsus = vastane.getTegevus();
+        puhastaEkraan();
 
         // Tudengil on ründamises eelis
         if (tudengiOtsus == Tegevus.RYNDA) {
             int tudengATK = tudeng.getRynda_dmg();
             if (vastaseOtsus == Tegevus.KAITSE) {
-                tudengATK = (int)(tudengATK * vastane.getKaitseProtsent());
+                tudengATK -=  (int)(tudengATK * vastane.getKaitseProtsent());
             }
             vastane.kaotaElud(tudengATK);
             if (!vastane.onElus()) {
@@ -136,8 +149,9 @@ public class Mäng {
         if (vastaseOtsus == Tegevus.RYNDA) {
             int vastaseATK = vastane.getRynda_dmg();
             if (tudengiOtsus == Tegevus.KAITSE) {
-                vastaseATK = (int)(vastaseATK * tudeng.getKaitseProtsent());
+                vastaseATK -= (int)(vastaseATK * tudeng.getKaitseProtsent());
             }
+            System.out.println();
             tudeng.kaotaElud(vastaseATK, vastane);
             if (!tudeng.onElus()) {
                 return tudeng;
@@ -146,6 +160,7 @@ public class Mäng {
         }
         // Vastane boostib enda ATK
         if (vastaseOtsus == Tegevus.BOOST) {
+            System.out.println();
             vastane.ryndeBoost();
         }
         return null;

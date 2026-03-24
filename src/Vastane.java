@@ -1,7 +1,11 @@
-public class Vastane extends Tegelane{
+import java.util.ArrayList;
+import java.util.List;
+
+public abstract class Vastane extends Tegelane{
 
     private Tegevus tegevus;
     private int punkteVaart;
+    private List<String> ryndeLaused = new ArrayList<>();
 
     public Vastane(String nimi, int elud, double kaitseProtsent, int rynda_dmg) {
         super(nimi, elud, kaitseProtsent, rynda_dmg);
@@ -21,5 +25,17 @@ public class Vastane extends Tegelane{
         int boost = 3;
 
         this.setRynda_dmg(this.getRynda_dmg() + boost);
+    }
+
+    public abstract void lisaRyndelaused();
+
+    public void setRyndeLaused(String[] ryndeLaused) {
+        for (String s : ryndeLaused) {
+            this.ryndeLaused.add(s);
+        }
+    }
+
+    public List<String> getRyndeLaused() {
+        return ryndeLaused;
     }
 }
