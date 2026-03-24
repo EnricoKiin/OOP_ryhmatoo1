@@ -14,13 +14,16 @@ public class Tudeng extends Tegelane{
     public void saaStippi() {
         int maxElud = this.getMaxElud();
         int hetkelElud = this.getElud();
+        System.out.println("Leidsid maast viieka. Saad edasi juua");
 
         int elusidJuurde = (int)(maxElud * 0.2);
         if (hetkelElud + elusidJuurde > maxElud) {
             this.setElud(maxElud);
+            System.out.println("Said kõik elud tagasi");
         }
         else {
             this.setElud(hetkelElud + elusidJuurde);
+            System.out.println("Said " + elusidJuurde + " hp juurde");
         }
     }
 

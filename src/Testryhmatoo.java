@@ -15,7 +15,7 @@ public class Testryhmatoo {
 
          */
 
-        Tudeng tudeng = new Tudeng("Marvin", 25, 0.5, 6);
+        Tudeng tudeng = new Tudeng("Marvin", 20, 0.5, 6);
         ArrayList<Vastane> vastased = new ArrayList<>();
         Baar baar1 = looBaar("Möku", 1);
         Baar baar2 = looBaar("Atso", 2);
@@ -27,6 +27,13 @@ public class Testryhmatoo {
         for (Vastane vastane : vastased) {
             Mäng mäng = new Mäng(tudeng, vastane);
             mäng.mängi();
+
+            if (!tudeng.onElus()) {
+                break;
+            }
+        }
+        if (tudeng.onElus()) {
+
         }
 
 

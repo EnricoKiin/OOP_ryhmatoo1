@@ -10,7 +10,7 @@ public class Baar extends Vastane {
     public void ryndeBoost() {
         super.ryndeBoost();
 
-        System.out.println(this.toString() + " turva ei lase sind välja, pead joogi ostma.");
+        System.out.println(this.toString() + " sai turvamehe juurde. Pead ettevaatlikum olema");
     }
 
     @Override

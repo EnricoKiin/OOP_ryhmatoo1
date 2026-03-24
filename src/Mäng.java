@@ -83,12 +83,12 @@ public class Mäng {
 
         if (!tudeng.onElus()) {
             kaotus();
-            maga(5000);
         }
         else {
             voit();
-            maga(4000);
         }
+        maga(5000);
+        puhastaEkraan();
 
 
     }
