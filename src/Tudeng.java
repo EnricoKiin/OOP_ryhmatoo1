@@ -1,6 +1,10 @@
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Peategelane meie loos, kes võitleb erinevate vastastega.
+ * Peamine omadus on punktid, mida saab vastaste tapmise eest
+ */
 public class Tudeng extends Tegelane{
 
     private Tegevus tegevus;
@@ -11,12 +15,18 @@ public class Tudeng extends Tegelane{
         this.punkte = 0;
     }
 
+    /**
+     * Tudengi tegevus, kui ta otsustab teha BOOST. Lisab elusid 30% elusid juurde
+     * Ei lähe üke max elude, mis alguses määrati talle
+     */
     public void saaStippi() {
         int maxElud = this.getMaxElud();
         int hetkelElud = this.getElud();
         System.out.println("Leidsid maast viieka. Saad edasi juua");
 
-        int elusidJuurde = (int)(maxElud * 0.2);
+        // Elude andmise loogika
+        // Esimene haru kui saab max eludeni tagasi ja teine kui ei saa
+        int elusidJuurde = (int)(maxElud * 0.3);
         if (hetkelElud + elusidJuurde > maxElud) {
             this.setElud(maxElud);
             System.out.println("Said kõik elud tagasi");
@@ -27,6 +37,10 @@ public class Tudeng extends Tegelane{
         }
     }
 
+    /**
+     * Punktide lisamine tapetult vastastelt
+     * @param punkteJuurde -- mitu punkti oli vastane väärt
+     */
     public void lisaPunkte(int punkteJuurde) {
         this.punkte += punkteJuurde;
     }
@@ -36,9 +50,15 @@ public class Tudeng extends Tegelane{
     }
 
 
+    /**
+     * Ülekaetud lisameetod, mis võtab elusid ära tegelaselt ja ütleb vastase ründe lauseid
+     * @param dmg -- Kui palju elusid kaotab
+     * @param vastane -- Vastane, kelle lauseid kasutada
+     */
     public void kaotaElud(int dmg, Vastane vastane) {
         List<String> vastaseLaused = vastane.getRyndeLaused();
 
+        // Lausete suvaline valik ja eraldi haru, kui peategelane otsustas end kaitsta (KAITSE tegevus)
         int valik = (int)(Math.random() * vastaseLaused.size());
         System.out.println(vastaseLaused.get(valik));
         if (this.tegevus == Tegevus.KAITSE) {

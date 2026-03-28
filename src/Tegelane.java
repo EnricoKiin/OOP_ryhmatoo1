@@ -1,3 +1,7 @@
+/**
+ * Ülemklass, millest kõik vastased ja peategelased tekivad
+ * Määrab peamised omadused nagu nimi, elud ja rünne ning muud
+ */
 public class Tegelane {
 
     private String nimi;
@@ -14,7 +18,7 @@ public class Tegelane {
         this.rynda_dmg = rynda_dmg;
         this.maxElud = elud;
     }
-
+    // Igasuguste eludega tegelemiseks
     public  int getElud() {
         return this.elud;
     }
@@ -22,6 +26,7 @@ public class Tegelane {
         this.elud = uuedElud;
     }
 
+    // Nime määramiseks
     public void setNimi(String nimi) {
         this.nimi = nimi;
     }
@@ -29,6 +34,10 @@ public class Tegelane {
         return this.nimi;
     }
 
+    /**
+     * Võtab vastavalt tegelaselt sisestatud arv elusid ära. EI lähe alla 0
+     * @param dmg -- Kuib palju elusid kaotab. Alati positiivne arv
+     */
     public void kaotaElud(int dmg) {
         if (this.elud - dmg < 0) {
             this.elud = 0;
@@ -38,12 +47,18 @@ public class Tegelane {
         }
     }
 
+    /**
+     * Kontrollib, kas vastav tegelane on elus
+     * @return boolean
+     */
     public boolean onElus() {
         if (this.elud != 0) {
             return true;
         }
         return false;
     }
+
+    // Siit alla on erinevad getterid ja setterid, mida alamklassid kasutavad, et pääseda ligi andmetele
 
     public double getKaitseProtsent() {
         return kaitseProtsent;

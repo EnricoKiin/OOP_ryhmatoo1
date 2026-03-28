@@ -1,5 +1,9 @@
 import java.util.Scanner;
 
+/**
+ * Peamine klass, mis tegelb kogu tegelaste vahelise kokkupuudetega ja mängu loogika
+ * Vaõtab parameetriteks Vastase ja Tudengi
+ */
 public class Mäng {
     private Tudeng tudeng;
     private Vastane vastane;
@@ -19,30 +23,52 @@ public class Mäng {
         }
     }
 
+    /**
+     * Prindib pärast igat lahingu etappi hetkese mängu seisu meetodis mängi()
+     */
     public void mänguSeis() {
         puhastaEkraan();
         System.out.println(vastane.toString() + ": " + vastane.getElud() + "hp");
         System.out.println(tudeng.toString() + ": " + tudeng.getElud() + "hp");
     }
 
+    /**
+     * Paneb mängu seisma kindlaks määratud ajaks, et jõuaks teksti lugeda
+     * @param aeg -- millisekundites antud aeg
+     */
     public void maga(int aeg) {
         try {
             Thread.sleep(aeg);
         }
         catch (InterruptedException ignored) {}
     }
+
+    /**
+     * Peameetod, mis tegeleb kogu mängu loogikaga
+     * Peamine flow on:
+     * 1. Vastase tegevuse välja loosimine
+     * 2. Tudeng otsustab oma tegevuse terminali kirjutades
+     * 3. lahing tehakse läbi
+     * 4. Kontrollitakse tegelaste elus olekut
+     * 5. Kui tudeng sureb, siis kaotus(). Kui võidab siis voit()
+     */
     public void mängi() {
         Scanner sc = new Scanner(System.in);
         int TudengiOtsus;
         int vastaneTegevus;
+        boolean lubatudKirjutada = true;
 
-
+        // Tegevuste valimise ja lahingute tsükkel, mis kestab kuni keegi sureb
         while (vastane.onElus() && tudeng.onElus()) {
             puhastaEkraan();
             mänguSeis();
+
+            // Vaste tegevuse välja loosimine
+            // Tahame ründamist rohkem, et mängija ei saaks end liiga mugavalt tunda
+            // Hetkel 60% Ründa, 30% kaitse, 10 boost
             vastaneTegevus = (int) (Math.random() * 100);
 
-            if (vastaneTegevus <= 44) {
+            if (vastaneTegevus <= 59) {
                 vastane.setTegevus(Tegevus.RYNDA);
             } else if (vastaneTegevus <= 89) {
                 vastane.setTegevus(Tegevus.KAITSE);
@@ -50,6 +76,8 @@ public class Mäng {
                 vastane.setTegevus(Tegevus.BOOST);
             }
 
+            // Tudengi tegevuse määramine
+            // Tegeleb erinditega ja ei lase valet väärtust sisestada
             while (true) {
                 System.out.println("Vali tegevus:");
                 System.out.println("1 - ründa    2 - kaitse    3 - saa stippi");
@@ -66,6 +94,7 @@ public class Mäng {
                 }
             }
 
+            // Määrab vastavalt otsusele tegevuse
             switch (TudengiOtsus) {
                 case 1:
                     tudeng.setTegevus(Tegevus.RYNDA);
@@ -77,10 +106,12 @@ public class Mäng {
                     tudeng.setTegevus(Tegevus.RAVI);
                     break;
             }
+            // Lahing ja ootamine, et näha lauseid
             lahing();
             maga(5000);
         }
 
+        // Kontrollimine, et kes suri
         if (!tudeng.onElus()) {
             kaotus();
         }
@@ -93,12 +124,19 @@ public class Mäng {
 
     }
 
+    /**
+     * Meetod, mis kuvab tudengi saadud punktide arvu pärast surma. Kogu mängu lõpp
+     */
     public void kaotus() {
         puhastaEkraan();
         System.out.println("Surid ära!");
         System.out.println("Lõpetasid: " + tudeng.getPunkte() + " punktidega");
     }
 
+    /**
+     * Meetod, mis aktiveerub, kui tudeng tappis vastase.
+     * Ütleb palju punkte tudeng sai ja kasutab vastavaid meetode, et neid lisada
+     */
     public void voit() {
         puhastaEkraan();
         int vastasePunktid = vastane.getPunkteVaart();
@@ -107,22 +145,10 @@ public class Mäng {
         tudeng.lisaPunkte(vastasePunktid);
     }
 
-
-    public void mehaanika() {
-
-        Scanner teine = new Scanner(System.in);
-
-        System.out.println("SISESTA OMA NIMI: ");
-
-        String nimi = teine.nextLine();
-
-        tudeng.setNimi(nimi);
-
-    }
-
     /**
      * Korraldab Tudengi ja Vastase vahel lahingut
-     * @return Tagastab Vastava klassi isendi, kes ära suri. Muidu null
+     * Eelistab Tudengi tegevust Vastase omale
+     * @return Tagastab Vastava klassi isendi, kes ära suri. Muidu null. Hetkel pole kasutatud tagastusväärtust
      */
     public Tegelane lahing () {
         Tegevus tudengiOtsus = tudeng.getTegevus();
@@ -163,6 +189,7 @@ public class Mäng {
             System.out.println();
             vastane.ryndeBoost();
         }
+        // null kui keegi ei surnud
         return null;
 
 

@@ -1,11 +1,20 @@
 import java.util.ArrayList;
+import java.util.List;
 
+/**
+ * Algse mängu ainuke vastase tüüp.
+ */
 public class Baar extends Vastane {
 
     public Baar(String nimi, int elud, double kaitseProtsent, int rynda_dmg) {
         super(nimi, elud, kaitseProtsent, rynda_dmg);
         lisaRyndelaused();
+        lisaKaitselaused();
     }
+
+    /**
+     * Boostib ründe dmg, kuni surmani. Vt Vastase klassi, et näha kui palju
+     */
     @Override
     public void ryndeBoost() {
         super.ryndeBoost();
@@ -13,6 +22,9 @@ public class Baar extends Vastane {
         System.out.println(this.toString() + " sai turvamehe juurde. Pead ettevaatlikum olema");
     }
 
+    /**
+     * Lisame ründamise laused
+      */
     @Override
     public void lisaRyndelaused() {
         String[] laused = {"Turva ei usu su vanust. Võtab su ID kaardi ära",
@@ -24,25 +36,33 @@ public class Baar extends Vastane {
         setRyndeLaused(laused);
     }
 
+    /**
+     * Lisame kaitsmise laused
+     */
+    @Override
+    public void lisaKaitselaused() {
+        String[] laused = {"Vajutasid seinapealsest lülitist kõik tuled kustu.",
+                "Lõhkusid " + this.getNimi() + " akna. ",
+                "Jätsid WC-s kraani jooksma."
+        };
+        setKaitselaused(laused);
+    }
+
+    /**
+     * Baari vastase elude kaotamise loogika. Kasutab ülemklassi, et elusid kaotada, aga alamklassi ülekattet
+     * et lauseid välja öelda
+     * @param dmg -- Kuib palju elusid kaotab. Alati positiivne arv
+     */
     @Override
     public void kaotaElud(int dmg) {
         if (this.getTegevus()==Tegevus.KAITSE)
             System.out.println("Turvamees märkas sind - " + this.getNimi() + " kaotas ainult " + dmg + " elu.");
         else {
-            int lauseValik = (int) (Math.random() * 3) + 1;
-            switch (lauseValik) {
-                case 1:
-                    System.out.println("Lõhkusid " + this.getNimi() + " akna. ");
-                    break;
+            // Lausete valik listist
+            List<String> kaitselaused = this.getKaitselaused();
+            int lauseValik = (int) (Math.random() * kaitselaused.size());
 
-                case 2:
-                    System.out.println("Jätsid WC-s kraani jooksma.");
-                    break;
-
-                case 3:
-                    System.out.println("Vajutasid seinapealsest lülitist kõik tuled kustu.");
-                    break;
-            }
+            System.out.println(kaitselaused.get(lauseValik));
             System.out.println(this.getNimi() + " kaotas " + dmg + " elu.");
         }
 
