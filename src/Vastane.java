@@ -7,7 +7,6 @@ import java.util.List;
  */
 public abstract class Vastane extends Tegelane{
 
-    private Tegevus tegevus;
     private int punkteVaart;
     private List<String> ryndeLaused = new ArrayList<>();
     private List<String> kaitseLaused = new ArrayList<>();

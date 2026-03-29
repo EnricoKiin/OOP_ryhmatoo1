@@ -7,7 +7,6 @@ import java.util.List;
  */
 public class Tudeng extends Tegelane{
 
-    private Tegevus tegevus;
     private int punkte;
 
     public Tudeng(String nimi, int elud, double kaitseProtsent, int rynda_dmg) {
@@ -61,7 +60,7 @@ public class Tudeng extends Tegelane{
         // Lausete suvaline valik ja eraldi haru, kui peategelane otsustas end kaitsta (KAITSE tegevus)
         int valik = (int)(Math.random() * vastaseLaused.size());
         System.out.println(vastaseLaused.get(valik));
-        if (this.tegevus == Tegevus.KAITSE) {
+        if (this.getTegevus() == Tegevus.KAITSE) {
             System.out.println("Kuid su lemmik laul hakkas mängima. Kaotad vähem elusid.");
         }
         System.out.println("Kaotasid "  + dmg + " elu");

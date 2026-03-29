@@ -31,7 +31,8 @@ public class Baar extends Vastane {
                 "WC järrjekorras on 5 inimest. Pead vastu pidama",
                 "Baari tuleb sõber, kellele oled võlgu. Pead joogi välja tegema",
                 "Jõid liiga palju, pead oksendama.",
-                "Keegi müksas su vastu, su jook lendas maha.",
+                "Keegi müksas sind, su jook lendas maha.",
+                "Tähelepanematuses varastas keegi su tupsukarbi ära"
         };
         setRyndeLaused(laused);
     }
@@ -43,13 +44,15 @@ public class Baar extends Vastane {
     public void lisaKaitselaused() {
         String[] laused = {"Vajutasid seinapealsest lülitist kõik tuled kustu.",
                 "Lõhkusid " + this.getNimi() + " akna. ",
-                "Jätsid WC-s kraani jooksma."
+                "Jätsid WC-s kraani jooksma.",
+                "Istusid " + this.getNimi() + " tooli katki",
+                "Kusesid pika järjekorra pärast " + this.getNimi() + " seinale",
         };
         setKaitselaused(laused);
     }
 
     /**
-     * Baari vastase elude kaotamise loogika. Kasutab ülemklassi, et elusid kaotada, aga alamklassi ülekattet
+     * Baari elude kaotamise loogika. Kasutab ülemklassi, et elusid kaotada, aga alamklassi ülekattet
      * et lauseid välja öelda
      * @param dmg -- Kuib palju elusid kaotab. Alati positiivne arv
      */

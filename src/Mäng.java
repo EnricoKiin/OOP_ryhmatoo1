@@ -189,6 +189,12 @@ public class Mäng {
             System.out.println();
             vastane.ryndeBoost();
         }
+
+        // Olukord kui mõlemad kaitsevad
+        if (vastaseOtsus == Tegevus.KAITSE && tudengiOtsus == Tegevus.KAITSE) {
+            System.out.println("Kumbki ei julgenud midagi teha. Nii sama jõllitasite üksteist.");
+        }
+
         // null kui keegi ei surnud
         return null;
 
