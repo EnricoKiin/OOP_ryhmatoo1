@@ -56,7 +56,7 @@ public class Mäng {
         Scanner sc = new Scanner(System.in);
         int TudengiOtsus;
         int vastaneTegevus;
-        boolean lubatudKirjutada = true;
+
 
         // Tegevuste valimise ja lahingute tsükkel, mis kestab kuni keegi sureb
         while (vastane.onElus() && tudeng.onElus()) {
@@ -192,7 +192,7 @@ public class Mäng {
 
         // Olukord kui mõlemad kaitsevad
         if (vastaseOtsus == Tegevus.KAITSE && tudengiOtsus == Tegevus.KAITSE) {
-            System.out.println("Kumbki ei julgenud midagi teha. Nii sama jõllitasite üksteist.");
+            System.out.println("Kumbki ei julgenud midagi teha. Niisama jõllitasite üksteist.");
         }
 
         // null kui keegi ei surnud

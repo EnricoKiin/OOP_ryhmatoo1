@@ -28,11 +28,13 @@ public class Baar extends Vastane {
     @Override
     public void lisaRyndelaused() {
         String[] laused = {"Turva ei usu su vanust. Võtab su ID kaardi ära",
-                "WC järrjekorras on 5 inimest. Pead vastu pidama",
+                "WC järjekorras on 5 inimest. Pead vastu pidama",
                 "Baari tuleb sõber, kellele oled võlgu. Pead joogi välja tegema",
                 "Jõid liiga palju, pead oksendama.",
                 "Keegi müksas sind, su jook lendas maha.",
-                "Tähelepanematuses varastas keegi su tupsukarbi ära"
+                "Tähelepanematuses varastas keegi su tupsukarbi ära",
+                "Vaatasid Moodlesse, mata tunnika hinne tuli välja",
+
         };
         setRyndeLaused(laused);
     }
@@ -47,6 +49,7 @@ public class Baar extends Vastane {
                 "Jätsid WC-s kraani jooksma.",
                 "Istusid " + this.getNimi() + " tooli katki",
                 "Kusesid pika järjekorra pärast " + this.getNimi() + " seinale",
+                "Oksendasid baari rõdult alla, kukkus turvamehele pähe",
         };
         setKaitselaused(laused);
     }
