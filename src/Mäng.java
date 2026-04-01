@@ -130,7 +130,7 @@ public class Mäng {
     public void kaotus() {
         puhastaEkraan();
         System.out.println("Surid ära!");
-        System.out.println("Lõpetasid: " + tudeng.getPunkte() + " punktidega");
+        System.out.println("Lõpetasid: " + tudeng.getPunkte() + " punktiga");
     }
 
     /**

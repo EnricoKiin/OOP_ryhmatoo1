@@ -20,6 +20,7 @@ public class Baar extends Vastane {
         super.ryndeBoost();
 
         System.out.println(this.toString() + " sai turvamehe juurde. Pead ettevaatlikum olema");
+        System.out.println(this.toString() + " ründab tugevamalt!");
     }
 
     /**
